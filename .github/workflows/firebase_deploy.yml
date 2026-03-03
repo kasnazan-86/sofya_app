@@ -32,6 +32,21 @@ jobs:
       - name: Install Firebase CLI
         run: npm i -g firebase-tools
 
+      # ✅ مهم جداً: تثبيت حزم functions قبل النشر
+      - name: Install functions dependencies
+        working-directory: functions
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      # ✅ إذا عندك TypeScript داخل functions
+      - name: Build functions
+        working-directory: functions
+        run: npm run build --if-present
+
       - name: Deploy to Firebase
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json

@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /wallets/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /trips/{tripId} {
+      allow read: if request.auth != null;
+
+      allow create: if request.auth != null;
+
+      allow update: if request.auth != null
+        && request.resource.data.status in ["accepted", "started", "cancelled"];
+    }
+
+    match /transactions/{id} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /commissions/{id} {
+      allow read, write: if false;
+    }
+  }
+}

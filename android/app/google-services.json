@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "459548402710",
+    "project_id": "sofya-pay",
+    "storage_bucket": "sofya-pay.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459548402710:android:3e7c38061f6db4bd018137",
+        "android_client_info": {
+          "package_name": "com.example.sofya_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459548402710-2dtac2ovskck5oogns3juboq1ouij3h7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sofya_app",
+            "certificate_hash": "b10bbc9619200360109a3b3da68e2271bec219ac"
+          }
+        },
+        {
+          "client_id": "459548402710-654gh2s021hh4quu21e93icddeofcjft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG6xgnE3ToAOW7sw_3tQUmNBSh4fRpo5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459548402710-654gh2s021hh4quu21e93icddeofcjft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

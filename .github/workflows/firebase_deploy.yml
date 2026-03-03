@@ -2,11 +2,12 @@ name: Firebase Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,6 +32,17 @@ jobs:
 
       - name: Install Firebase CLI
         run: npm i -g firebase-tools
+
+      # ✅ مهم: تثبيت حزم functions داخل مجلد functions
+      - name: Install functions dependencies
+        working-directory: functions
+        run: |
+          node -v
+          npm -v
+          ls -la
+          test -f package.json || (echo "functions/package.json not found" && exit 1)
+          cat package.json
+          npm ci || npm install
 
       - name: Deploy to Firebase
         env:

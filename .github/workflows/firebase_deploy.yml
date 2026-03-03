@@ -16,9 +16,18 @@ jobs:
         with:
           node-version: 20
 
+      - name: Verify secrets exist
+        run: |
+          if [ -z "${{ secrets.FIREBASE_PROJECT_ID }}" ]; then
+            echo "Missing FIREBASE_PROJECT_ID secret"; exit 1; fi
+          if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}" ]; then
+            echo "Missing FIREBASE_SERVICE_ACCOUNT_JSON secret"; exit 1; fi
+
       - name: Write service account key
         run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}' > ${{ runner.temp }}/sa.json
+          cat > "${{ runner.temp }}/sa.json" << 'JSON'
+          ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          JSON
 
       - name: Install Firebase CLI
         run: npm i -g firebase-tools
